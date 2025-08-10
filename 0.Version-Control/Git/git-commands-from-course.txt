@@ -45,6 +45,7 @@ git remove <filename> #for single files
 git remove <filename1> <filename2> #for multiple files
 git rm -r <directory-name> #to remove from the Git repository
 
+#tagging (local part)
 
 
 
