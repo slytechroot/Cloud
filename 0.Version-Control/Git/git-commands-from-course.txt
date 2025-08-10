@@ -1,0 +1,49 @@
+git --version
+git help
+git help add (browser will open)
+git config --list
+git config --global user.name "your-name"
+git config --global user.email "something@something.com"
+
+#Creating your first GIT project
+- create a folder for your projects
+- browse with your git command line to the folder you've previously created
+git init
+git status
+
+#The files we upload are initially on our computer and we can create this with basic Linux commands.
+touch hello_world.py
+nano hello_world.py (you can add your code or any text to the file)
+(this file is untracked by Git)
+git status
+
+#stage (or add) the .py file from the working directory to the staging area.
+git add hello_world.py
+(it is now added and it is ready to be committed)
+
+git status (it says that changes can now be committed)
+git commit -m "My first commit using Git!"
+
+#list of commits
+git log
+git status
+
+#GIT WORKFLOW
+- use commands above to change files and get status, and get log.
+git add hello_world.py
+git add greetings.py
+git commit -m "Some descriptive text"
+git status
+git log
+
+#Check the difference between 2 commits and what has changed since the last commit to the file.
+git diff
+
+
+
+
+
+
+
+
+
