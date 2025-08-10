@@ -1,0 +1,8 @@
+git --version
+git help
+git help add (browser will open)
+git config --list
+git config --global user.name "your-name"
+
+
+
