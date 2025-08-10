@@ -46,6 +46,16 @@ git remove <filename1> <filename2> #for multiple files
 git rm -r <directory-name> #to remove from the Git repository
 
 #tagging (local part)
+- use to mark kind of releases and to tag different versions
+- create a tag
+git tag <tag-name>
+ex:
+git tag version1
+git tag
+git tag --list
+git tag v1.1
+git tag -l "v1*" #list a certain tax prefix
+
 
 
 
