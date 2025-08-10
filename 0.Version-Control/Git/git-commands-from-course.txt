@@ -66,6 +66,39 @@ git show v2.2.1 #example
 git tag -a v1.1.1 -m "very good release of v1.1.1"
 git tag --delete v1.1.1 #to delete the tag you created previously
 
+#Unstage a staged file
+touch file1.py file2.py
+vi file1.py
+  - type some text, and save the file
+vi file2.py
+  - type some text, and save the file
+git add file1.py file2.py
+git status
+#restore the file
+git restore --staged <file>
+git restore --staged file1.py
+
+git reset HEAD file1.py
+git status
+git restore --staged file2.py
+
+#Unmodifying Files - Revert Last Commit Operation in Git
+nano hello_world.py
+(add some junk)
+git status
+git restore hello_world.py #to restore/remove the last changes
+#this is a very used command
+#USE WITH CAUTION - or you will undo ALL your last work!!!!!
+# BE 100% sure you want to run this command and it will delete ALL your last changes/work
+
+#################### The END #####################
+
+
+
+
+
+
+
 
 
 
