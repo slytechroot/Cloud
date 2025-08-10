@@ -1,0 +1,55 @@
+# Set up Git (only once per machine)
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+
+# Start a new repository
+git init
+
+# Clone an existing repository
+git clone <repository-url>
+
+# Check repository status
+git status
+
+# Add files to staging area
+git add <file>
+git add .          # Add all files
+
+# Commit staged changes
+git commit -m "Commit message"
+
+# View commit history
+git log
+
+# Show changes
+git diff           # Unstaged changes
+git diff --staged  # Staged changes
+
+# Create a new branch
+git branch <branch-name>
+
+# Switch branches
+git checkout <branch-name>
+git switch <branch-name>
+
+# Create and switch to a new branch
+git checkout -b <branch-name>
+git switch -c <branch-name>
+
+# Merge another branch into current branch
+git merge <branch-name>
+
+# Push changes to remote repository
+git push origin <branch-name>
+
+# Pull changes from remote repository
+git pull
+
+# View remote repositories
+git remote -v
+
+# Add a new remote repository
+git remote add origin <repository-url>
+
+# Remove a file from git but keep locally
+git rm --cached <file>
