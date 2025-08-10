@@ -21,6 +21,13 @@ git status
 git add hello_world.py
 (it is now added and it is ready to be committed)
 
+git status (it says that changes can now be committed)
+git commit -m "My first commit using Git!"
+
+#list of commits
+git log
+git status
+
 
 
 
