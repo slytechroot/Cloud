@@ -11,6 +11,20 @@ git config --global user.email "something@something.com"
 git init
 git status
 
+#The files we upload are initially on our computer and we can create this with basic Linux commands.
+touch hello_world.py
+nano hello_world.py (you can add your code or any text to the file)
+(this file is untracked by Git)
+git status
+
+#stage (or add) the .py file from the working directory to the staging area.
+git add hello_world.py
+(it is now added and it is ready to be committed)
+
+
+
+
+
 
 
 
