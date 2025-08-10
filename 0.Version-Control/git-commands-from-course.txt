@@ -36,6 +36,10 @@ git commit -m "Some descriptive text"
 git status
 git log
 
+#Check the difference between 2 commits and what has changed since the last commit to the file.
+git diff
+
+
 
 
 
