@@ -28,6 +28,13 @@ git commit -m "My first commit using Git!"
 git log
 git status
 
+#GIT WORKFLOW
+- use commands above to change files and get status, and get log.
+git add hello_world.py
+git add greetings.py
+git commit -m "Some descriptive text"
+git status
+git log
 
 
 
