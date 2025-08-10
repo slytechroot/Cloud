@@ -56,6 +56,17 @@ git tag --list
 git tag v1.1
 git tag -l "v1*" #list a certain tax prefix
 
+#create a new tag with a descriptive message
+git tag -a v2.2 -m "descriptive message of this 2.2 tag"
+
+git show <tag-name>
+git show v2.2.1 #example
+
+#delete a tag
+git tag -a v1.1.1 -m "very good release of v1.1.1"
+git tag --delete v1.1.1 #to delete the tag you created previously
+
+
 
 
 
