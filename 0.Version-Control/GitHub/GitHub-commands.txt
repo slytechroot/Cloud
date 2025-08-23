@@ -1,11 +1,20 @@
-.gitignore
-
+.gitignore file to ignore certain project documents:
 --------
 ### Edit it and add ###
 build/
 *.txt
 
 --------
+###################################
+
+git status
+git add .gitignore
+git commit -m "Added .gitignore file with IGNORE RULES"
+git push origin master
+
+###########
+
+
 
 
 
