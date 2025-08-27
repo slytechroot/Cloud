@@ -10,9 +10,11 @@ build/
 git status
 git add .gitignore
 git commit -m "Added .gitignore file with IGNORE RULES"
-git push origin master
+git push origin master #to push local changes to remote GitHub repo
 
 ###########
+
+
 
 
 
