@@ -115,7 +115,24 @@ Branching - Real Life Scenarion <----------
 git checkout -b feature
 (switched to a new branch 'feature'
 
-git branch feature
+git branch feature.py
+git commit -m "Initial part of the development is now ready"
+
+Note: if you have uncommitted changes, git will not let you change branches with 'git checkout <branchName>'. Have a clean working state if you're going to change branches. For this, run 'git status'. Modifications are OK, but they are uncommited with the command 'git add <file>'. 
+
+###
+Create a new branch to be used for troubleshooting: <-----
+- go back to the master branch
+git checkout master
+
+Switch to new branch issue:
+git checkout -b issue
+git add hellow.py
+git commit -m "descriptive message from the instructor"
+
+
+
+
 
 
 
