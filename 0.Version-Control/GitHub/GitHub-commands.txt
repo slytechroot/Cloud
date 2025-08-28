@@ -58,6 +58,9 @@ Spend time to understand the concepts. More things coming.....
 #######################
 Untracked Files <-----------
 
+5 Stages:
+Untracked by Git --> Tracked by Git (not changed) --> Tracked by Git (Changed) --> Staged --> Committed.
+
 vi hello.py
 git status
 (Untracked files: hello.py)
@@ -85,6 +88,7 @@ new file: hello.py
 Two states after staged <--------------
 - This means that one can have a file in a Staged state and in a non-Staged state. Interesting? How can I file be in two different states?
 What happens is that you had the file added (with 'git add <filename>') to the Staged state, but then you modified the file AGAIN and this modification put the file in a second state of un-Staged. Typically after using the 'git add <filename>' command you'd 'git commit -m <message>' the file, but we didn't and chose instead to modify it again, this put the file in that secondary state of un-Staged.
+The file with the last modifications shows up as Un-Staged, because after the changes, the file was not Staged to be Committed. 
 
 
 
