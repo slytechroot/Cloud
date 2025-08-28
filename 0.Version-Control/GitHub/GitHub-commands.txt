@@ -90,6 +90,15 @@ Two states after staged <--------------
 What happens is that you had the file added (with 'git add <filename>') to the Staged state, but then you modified the file AGAIN and this modification put the file in a second state of un-Staged. Typically after using the 'git add <filename>' command you'd 'git commit -m <message>' the file, but we didn't and chose instead to modify it again, this put the file in that secondary state of un-Staged.
 The file with the last modifications shows up as Un-Staged, because after the changes, the file was not Staged to be Committed. 
 
+So the way this works, is that you can Commit the changes you've done to the file up to the point where you ran the command 'git add <filename>', and it will post those changes to the GitHub. You won't see the 
+last changes, because you'd have to run 'git add <filename>' again to merge the last changes made to the file and then 'git commit -m' again to Commit the last changes to GitHub. 
+
+##############
+Committing/Snapshot <------
+
+How can we commit the changes in the Staging area?
+
+
 
 
 
