@@ -6,6 +6,7 @@ build/
 
 --------
 ###################################
+.gitignore <---------------
 
 git status
 git add .gitignore
@@ -13,6 +14,8 @@ git commit -m "Added .gitignore file with IGNORE RULES"
 git push origin master #to push local changes to remote GitHub repo
 
 ###########
+Branching <------------
+
 git branch "descriptive-greetings"
 git status
 git branch
@@ -53,6 +56,41 @@ Branching is an important concept of Git/GitHub.
 Spend time to understand the concepts. More things coming.....
 
 #######################
+Untracked Files <-----------
+
+vi hello.py
+git status
+(Untracked files: hello.py)
+
+git add hello.py
+git status
+(this file is now tracked by Git, because it says 'changes to be committed').
+##########
+Staging Modified files <-----------
+
+git status
+ls
+git status
+git add goodnight.py
+git status
+- if you see the following
+On branch master
+Changed to be committed:
+(use 'git restore --staged <file>...' to unstage)
+modified: goodnight.py
+new file: hello.py
+- this means the files are in a staging mode/state!!!!
+
+############
+Two states after staged <--------------
+- This means that one can have a file in a Staged state and in a non-Staged state. Interesting? How can I file be in two different states?
+What happens is that you had the file added (with 'git add <filename>') to the Staged state, but then you modified the file AGAIN and this modification put the file in a second state of un-Staged. Typically after using the 'git add <filename>' command you'd 'git commit -m <message>' the file, but we didn't and chose instead to modify it again, this put the file in that secondary state of un-Staged.
+
+
+
+
+
+
 
 
 
