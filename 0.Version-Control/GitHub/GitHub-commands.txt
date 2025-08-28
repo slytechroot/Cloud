@@ -97,6 +97,28 @@ last changes, because you'd have to run 'git add <filename>' again to merge the 
 Committing/Snapshot <------
 
 How can we commit the changes in the Staging area?
+Only the files that were Staged can be part of the standard Commit. The files that are Un-Staged, are not going to be part of the Commit. They are tracked by Git, but are not in the Stage area and will not be committed. 
+
+Notice the branch where it gets committed (such as master or another branch) and also the SHA-1 checksum (signature) that the commit has. 
+
+##############
+Skipping Staging Area <-------
+
+- useful for when you want to avoid using the 'git add <Mfilename>' command.
+
+git commit -a -m <"message ">
+(-a to skip the Staging area)
+
+#########################
+
+
+
+
+
+
+
+
+
 
 
 
