@@ -110,6 +110,13 @@ git commit -a -m <"message ">
 (-a to skip the Staging area)
 
 #########################
+Branching - Real Life Scenarion <----------
+
+git checkout -b feature
+(switched to a new branch 'feature'
+
+git branch feature
+
 
 
 
