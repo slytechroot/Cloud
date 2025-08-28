@@ -130,6 +130,10 @@ git checkout -b issue
 git add hellow.py
 git commit -m "descriptive message from the instructor"
 
+#add the 'issue' branch and 'feature' branch into the 'master' branch
+
+# Merging - Process, Steps, and Merge Techniques
+
 
 
 
