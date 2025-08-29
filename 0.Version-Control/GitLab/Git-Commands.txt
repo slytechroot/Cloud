@@ -1,0 +1,4 @@
+#in any folder as long as the Git client is installed
+git init
+(and then normal git commands)
+
