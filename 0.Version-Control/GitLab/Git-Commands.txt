@@ -229,6 +229,70 @@ git checkout <commit hash>
 
 History:
 git log
+- notice the commit hashes
+
+Each commit:
+Unique commit hash, commit message, author+date.
+
+A developer notices that after a certain date, an error in the code appears and wants to go back in time to troubleshoot. He'll need to use the commit hash for that!!!
+This means we can go back to a specific project version.
+
+git checkout <commit-hash>
+git status
+git stash
+(saved working directory and index state WIP on bugfix/user-auth-error...)
+
+git checkout <commit-hash>
+(You are in 'detached HEAD' state.)
+- this tells me I am somewhere in the commit stage, but not in the main most up-to-date commit stage of the branch.
+- Now that we are in a commit, we can create a branch from here to troubleshoot further.
+- Not the most commong scenario that you make changes in the previous state of the application/code.
+- Mostly used for testing or resolving a bug
+
+git checkout bugfix/user-auth-error
+
+##########
+Undoing commits <----------
+git reset --hard (and --soft)
+git revert
+
+Changing commits <-------
+git commit --amend
+
+git commit -m "removed some log lines"
+- if we want to revert the commit to let's say 2
+git log
+git reset --hard HEAD~2
+git log
+(we will see that the log commit is gone)
+
+- and we want to go one step back
+git log
+git reset --hard HEAD~1
+git log
+git status
+(your branch is up to date)
+git add .
+git commit -m "removed some long lines again"
+git log
+
+- so let's say I still want to do some changes and re-commit, remember I've already commited the code.
+git reset --soft HEAD~1
+or
+git reset HEAD~1
+
+git status
+(the change is there, but the commit is there)
+- this can be tested with making some changes to the code.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -274,6 +338,7 @@ git log
 
 
  
+
 
 
 
