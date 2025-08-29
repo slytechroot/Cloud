@@ -192,6 +192,49 @@ git push
 
 - they stay in the local folder, but they are not tracked by GIT anymore.
 
+###################### 
+Git stash <----------
+- save work-in-progress changes (stash)
+
+git status
+- we need to move to another branch, but I don't want to commit those changes as they are not ready
+
+git checkout master
+(error: your local changes to the following files would be overwritten by checkout)
+Solution: 'stash' your changes
+
+git stash
+git status
+git checkout master
+(now it changed to the master)
+git checkout bufix/user-auth-error
+git status
+(nothing to commit, working tree clean)
+
+How do we get back our changes?
+git stash pop
+(and now we are back to our 'stash'ed changes.
+
+Another use case for stashing
+- making changes to the current branch
+- notice that something isn't working anymore
+(Did I break it with my changes?)
+- so hide changes temporarily away to test if it works without my code changes
+- bring changes back to my local working directory
+git stash pop
+
+####### 
+Going back in history <-------
+git checkout <commit hash>
+
+History:
+git log
+
+
+
+
+
+
 
 
 
@@ -231,6 +274,7 @@ git push
 
 
  
+
 
 
 
