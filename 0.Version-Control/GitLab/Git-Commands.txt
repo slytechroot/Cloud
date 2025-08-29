@@ -31,7 +31,12 @@ git push --set-upstream origin master
 (branch connected)
 (refresh your Gitlab page to see the uploaded info)
 - if we deleted the .git folder we wouldn't be connected to the repo anymore, so we'd have to reconnect it)
+rm -rf .git
+git status
+fatal: not a git repository.
 
+
+ 
 
 
 
