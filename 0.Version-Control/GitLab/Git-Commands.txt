@@ -53,6 +53,29 @@ git checkout <branchname>, so:
 git checkout bugfix/user-auth
 (now we'd get the local branch connected to the remote branch, so every change to the local code, will only affected the branch 'bugfix/user-auth')
 
+#command line to create a new branch
+git checkout master
+(to get the master branch updates)
+
+#create a branch and connect
+git checkout -b feature/database-connection
+
+If you run 'git branch' the remote repo will not know of the local branch created.
+git status
+ls
+nano <file>
+git add .
+git commit
+(type message, save and exit)
+
+git status
+git push
+(this doesn't work because the remote repo doesn't know about the feature/ branch)
+
+git push --set-upstream origin feature/database-connection
+
+
+
 
 
 
@@ -63,6 +86,7 @@ git checkout bugfix/user-auth
 
 
  
+
 
 
 
