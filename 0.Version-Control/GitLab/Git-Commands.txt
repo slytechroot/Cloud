@@ -306,6 +306,66 @@ git push --force
 - DON'T do this in the master branch or the develop branch!!!
 - DO THIS ONLY when working alone in a brach!!!!
 
+Because you reset and forced pushed it in remote! Now the other developers have that commit already in their local repo.
+They might have an issue because their changes will not be accepted by the remote branch. The history might be messed up!!!!
+
+Use instead 'git revert ...'
+- just revert the last commit
+git revert <commit hash>
+
+Use 'git log' to get the hash or the GUI.
+
+git push
+
+git revert <commit hash>
+- creates a new commit to revert the old commit's changes
+
+git reset <commit hash>
+- removed old commit
+
+#############
+Merging Branches (git merge and merge in UI)
+
+git merge
+
+-  you are working in the bugfix/b branch, and are 2 commits behind in the bugfix branch.
+- make sure your local master branch is up-to-date
+
+git checkout master
+git pull
+git checkout bugfix/user-auth-error
+git log
+git push
+
+- we can also merge the source branch with the master. 
+- the source branch will be deleted after the merger.
+
+#################
+
+GIT for DEVOPS <---------------
+1) Infrastructure as Code
+- many kubernetes configuration files (YAML) for deployment to Kubernetes
+- Terraform and Ansible Configuration Files
+- Bash and Python scripts
+
+Files changes over time and should be tracked. 
+They also need to be securely stored in one place. These files are shareable for DevOps team. 
+
+2) CI/CD pipeline and build automation
+- checkout code, test and build application, etc.
+- need integration for the build automation tool with application git repository.
+- you need to setup integration with build automation tool and git repository.
+- getting commit hash of specific commit
+- check if changes happen in frontend or backend code
+
+######### The END #######################
+
+
+
+
+
+
+
 
 
 
@@ -370,6 +430,7 @@ git push --force
 
 
  
+
 
 
 
