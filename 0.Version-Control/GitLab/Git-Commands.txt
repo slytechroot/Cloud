@@ -35,8 +35,35 @@ rm -rf .git
 git status
 fatal: not a git repository.
 
+#Concept of branching
+Master branch is the main branch, created by default when initializing a repo.
+Best practice: It's best to create a branch for each feature and each bugfix. 
+Developers can commit without worrying to break main branch.
+Big feature branches long open, increase the chance of 'merge conflicts'.
+With branches, you achieve a stable main (master) branch, which is ready for deployment.
+Any branch is based on the master branch. Branch starts from the same codebase.
+
+git branch
+
+(but the local master branch doesn't know about the other branches created in cloud, so we need to update the local info)
+git pull
+
+To switch in between branches:
+git checkout <branchname>, so:
+git checkout bugfix/user-auth
+(now we'd get the local branch connected to the remote branch, so every change to the local code, will only affected the branch 'bugfix/user-auth')
+
+
+
+
+
+
+
+
+
 
  
+
 
 
 
