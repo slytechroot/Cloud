@@ -111,6 +111,110 @@ git pull
 git branch -d <name-of-branch>
 git branch -d feature/database-connection
 
+#########
+Rebase <------
+- 2 devs are working on the same branch and making changes locally.
+- we commit those changes to the branch, but in the remote online repo
+- but the local repository doesn't know about those changes, and the local repo of another dev, doesn't know about My changes.
+
+git add . 
+git commit -m "adjusted smth again"
+git push
+Error: (you can't push you changes because there have been other changes push to the remote branch)
+- So I need to do a 'git pull' before I do my 'git push'
+git pull = git fetch + git merge
+
+git push
+( I am pushing 2 commits, one was my commit and the other one was the 'merge commit')
+
+git pull -r
+(git pull rebase)
+- pulls the changes from the remote branch and sticks our changes on top of that!!!
+- there's no merge branch in-between.
+
+#history of the changes
+git log
+
+######
+Resolving merge conflicts <----------
+
+git add .
+git commit -r "adjusted smth in server"
+(commited the changes locally)
+
+- go to remote to do changes in online GUI.
+- some developers can make changes in 2-3 locations, in the same file and parallel.
+
+git push
+(changes are rejected)
+
+git pull -r
+(this created a Merge CONFLICT)
+YOU must now tell GIT which changes to accept.
+
+We can go in the Editor and find under Git - Resolve Conflicts.
+
+The space in the middle will be the final product and once that's resolved because of the modifications that you think should be there, go back to the 
+command prompt and type:
+git rebase --continue
+
+- now you can push your changes to remote:
+git push
+
+#######
+.gitignore (File) <---------------
+(Don't track certain files)
+
+- add .gitignore file to your project (root directory)
+- to exclude certain folders or files from git to be tracked
+- files and folders are specific to your project. Build folders, where compiled code is located, should be excluded.
+- open the .gitignore file and exclude:
+.idea/*
+build/*
+node_modules/*
+
+git status
+git rm -r --cached .idea
+
+git status
+git add .
+git commit -m "Added gitignore file"
+git push
+(to commit)
+
+- check the ONLINE GUI and the .idea folder should be gone.
+
+git rm -r --cached node_modules
+git status
+git add .
+git commit -m "Remove node_modules from repo"
+git push
+
+- they stay in the local folder, but they are not tracked by GIT anymore.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -127,6 +231,7 @@ git branch -d feature/database-connection
 
 
  
+
 
 
 
