@@ -1,4 +1,3 @@
-
 🌟 Hey there, I’m sly!
 
 🌍 Always learning something new — currently diving into [insert tech/tool here]
