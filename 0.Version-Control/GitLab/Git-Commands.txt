@@ -81,6 +81,19 @@ Only master branches are used for CI-CD (continuous integration and continuous d
 Pipeline is triggered whenever feasture/bugfix code is merged into master.
 Deploy every single feature/bugfix to the DEV branch. DEV branches also become 'work in progress' branches.
 
+#Merge requests
+Best practice: other developer reviews code changes before merging. Master - is stable and ready for production. 
+Use cases: big feature, junior developer or expertise in different area. Great chance to learn and grow from each other.
+We use pull requests!!!!
+You can view these changes and need merging in the GitLab console under Branches, Merge request on the feature/ branches. 
+
+The 2 numbers mean this:
+0 1 
+0 - there are 0 changes on the master that I need to merge or pull down
+1 - there is 1 change on the branch that needs to be merged with the master.
+
+git pull
+
 
 
 
@@ -96,6 +109,7 @@ Deploy every single feature/bugfix to the DEV branch. DEV branches also become '
 
 
  
+
 
 
 
