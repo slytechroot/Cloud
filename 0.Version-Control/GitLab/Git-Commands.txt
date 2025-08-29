@@ -284,6 +284,38 @@ git reset HEAD~1
 git status
 (the change is there, but the commit is there)
 - this can be tested with making some changes to the code.
+git log
+git add .
+git commit -m "recommiting the changes"
+
+- instead of creating a new commit, it changes the last commit by merging this commit into the last commited.
+git add .
+git commit --amend
+git log
+git status
+git push
+
+- but let's say I've realized I should have not done the last commit, but the change is already in GitLab, so I want to undo the commit in the remote repository
+as well.
+git reset --hard HEAD~1
+(this will help me start from scratch)
+- so I've removed the commit from the local repo, but the remote repo still has it.
+git push --force
+(--force because we have reverted something, but the remote repo doesn't know this)
+- if you refreshed the page, you will see the last Commit is gone from the remote repository.
+- DON'T do this in the master branch or the develop branch!!!
+- DO THIS ONLY when working alone in a brach!!!!
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -338,6 +370,7 @@ git status
 
 
  
+
 
 
 
