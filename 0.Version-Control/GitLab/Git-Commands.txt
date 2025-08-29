@@ -92,7 +92,25 @@ The 2 numbers mean this:
 0 - there are 0 changes on the master that I need to merge or pull down
 1 - there is 1 change on the branch that needs to be merged with the master.
 
+This can all be done through the GitLab GUI online. 
+
 git pull
+
+If you click Merge, your branch will merge with the Master.
+
+##########
+Deleting branches <---------------
+
+Leave the branch or delete it.
+Delete branch after merging. Create a new branch when needed.
+Don't end up with 100s of branches that nobody knows what they are for. 
+
+Delete the branch locally, if you've deleted on the remote online branch, otherwise you still have it locally.
+git checkout master
+git pull
+git branch -d <name-of-branch>
+git branch -d feature/database-connection
+
 
 
 
@@ -109,6 +127,7 @@ git pull
 
 
  
+
 
 
 
