@@ -1,4 +1,62 @@
+git status
+result: (not a git repository)
+(because the .git folder is missing)
+
 #in any folder as long as the Git client is installed
 git init
 (and then normal git commands)
+
+#to add all files
+git add . 
+git commit
+(add message)
+
+git status
+(no changes to commit)
+
+git log
+(to get the hash of the commit)
+
+git push
+(no configured push destination)
+
+git remote add origin git@gitlab.com:sly/test-node-app.git
+git status
+git push
+fatal: The current branch master has no upstream branch.
+(repo is connected, branch is Not)
+
+git push --set-upstream origin master
+(Branch master setup to track remote branch master from origin)
+(branch connected)
+(refresh your Gitlab page to see the uploaded info)
+- if we deleted the .git folder we wouldn't be connected to the repo anymore, so we'd have to reconnect it)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
