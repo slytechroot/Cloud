@@ -74,6 +74,16 @@ git push
 
 git push --set-upstream origin feature/database-connection
 
+Lots of teams have a master and a develop branch. The Dev branch is the intermediary master. Then their active branches such as features/ and bugfixes/ get merged
+into the develop branch (during the spring) and then the develop branch gets merged with the master, at the end of the sprint. 
+
+Only master branches are used for CI-CD (continuous integration and continuous delivery).
+Pipeline is triggered whenever feasture/bugfix code is merged into master.
+Deploy every single feature/bugfix to the DEV branch. DEV branches also become 'work in progress' branches.
+
+
+
+
 
 
 
@@ -86,6 +96,7 @@ git push --set-upstream origin feature/database-connection
 
 
  
+
 
 
 
