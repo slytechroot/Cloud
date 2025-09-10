@@ -21,5 +21,36 @@ ssh user@server-address
 docker-compose down
 docker-compose up -d
 - once deployed the app is shared with the testers to get feedback from that team. 
+- once all is confirmed, the deployment is shared to PROD for deployment.
+
+Human involvment introduces risk and slows processes.
+Test each branch individually before merging.
+Avoid merging multiple big changes at once to avoid the confusion of which feature broke the app. 
+Commit smaller changes, more frequently, test faster and fix early. That's CI!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
