@@ -1,0 +1,56 @@
+#Check the main branch and commit
+git checkout main
+git pull origin main
+#Bump Version
+git add .
+git commit -m "Bump release version to v1.2.0"
+git push origin main
+
+Jenkins Build:
+- run tests
+- build docker image
+- push to docker repository
+
+- Manually modify a docker compose file (docker-compose.yml). 
+- Connect to the Kubernetes cluster
+kubectl cluster-info
+kubectl apply -f deployment.yaml
+
+- App run on a simple server:
+ssh user@server-address
+docker-compose down
+docker-compose up -d
+- once deployed the app is shared with the testers to get feedback from that team. 
+- once all is confirmed, the deployment is shared to PROD for deployment.
+
+Human involvment introduces risk and slows processes.
+Test each branch individually before merging.
+Avoid merging multiple big changes at once to avoid the confusion of which feature broke the app. 
+Commit smaller changes, more frequently, test faster and fix early. That's CI!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
