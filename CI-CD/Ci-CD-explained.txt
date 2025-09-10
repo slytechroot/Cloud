@@ -28,6 +28,57 @@ Test each branch individually before merging.
 Avoid merging multiple big changes at once to avoid the confusion of which feature broke the app. 
 Commit smaller changes, more frequently, test faster and fix early. That's CI!!!!
 
+CD - continuous delivery
+- avoid code breeze
+- after successful test:
+	- Build docker image
+	- push to docker registry (new artifact created)
+	- connect to server/cluster (dev environment)
+	- Run Docker Container
+
+nano deployment.yaml
+docker build -t my-app:v2 . 
+kubectl config use-context dev
+kubectl apply -f deployment.yaml
+
+Checkout the code locally
+Build a new docker image
+Update k8s manifest file
+Connect to k8s cluster
+Apply deployment
+- save Jenkinsfile, or .gitlab-ci.yml or deploy.yml
+
+We release the test code in stages, so it continuously gets tested at every stage.
+Deploying a release all the way through the stages to the testing environment is called CD. 
+
+We have to go all the way to production with our automated release pipeline.
+But before we release into prod, we need to deploy into staging to do performance testing, compliance checking, and security testing.
+
+Just 1 click to deploy.
+Logic handled by CI/Ci pipeline tool itself.
+Anyone should be able to deploy into PROD with 1 click. 
+This is called CD or Continuous Deployment. 
+
+Bugs can still slip through. 
+No 100% perfect testing. 
+
+Deployment strategies:
+- Canary deployment - we gradually deploy the app to 5% of the user base, then 1 hour later to 10%, and so on until we reach 100%. 
+- Blue-green deployment - the blue environment is running the current version, while the green is running the new version. If the new deployment has issues, 
+we can switch immediately to the old (current) running version. This is our way to revert to the previous version. 
+We also have human monitoring in place, which is well worth it, and if anything goes wrong, we can easily revert (fallback). 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
