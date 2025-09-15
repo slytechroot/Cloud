@@ -1,0 +1,74 @@
+AWS Fargate is a serverless compute engine for containers that works with both Amazon Elastic
+Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). Fargate primarily removes
+the need to provision and manage servers and allows developers to specify resources for each
+application.
+
+To get started using GitLab and Fargate you’ll need your AWS stack in place:
+1. An Amazon ECS cluster
+2. A service that belongs to the cluster that runs Fargate tasks
+3. An accessible container registry for Docker images
+4. An Amazon ECS task definition that references a Docker image stored in your registry that
+defines CPU and memory requirements
+5. An application load balancer that redirects requests to healthy targets in a target group
+6. A target group
+#####################
+
+Module 5: Securing AWS Environments
+
+AWS offers a wide range of services that can be used to secure AWS environments. These services include:
+
+    AWS Identity and Access Management (IAM)
+
+AWS IAM is a service that allows you to control who has access to your AWS resources.
+
+    AWS Key Management Service (KMS)
+
+AWS KMS is a service that allows you to encrypt your AWS data.
+
+    AWS Shield
+
+AWS Shield is a service that protects your AWS resources from DDoS attacks.
+
+Conclusion
+
+This quick points has provided you with the skills that will help you to prepare for the AWS Certified DevOps Engineer – Professional exam. 
+
+###################
+
+Module 3: Automating the Testing and Deployment of AWS Infrastructure and Applications
+
+AWS offers a wide range of services that can be used to automate the testing and deployment of AWS infrastructure and applications. These services include:
+
+    AWS CloudFormation
+
+AWS CloudFormation is a service that allows you to create and manage AWS infrastructure using a template.
+
+    AWS Elastic Beanstalk
+
+AWS Elastic Beanstalk is a service that makes it easy to deploy and manage applications in AWS.
+
+    AWS OpsWorks
+
+AWS OpsWorks is a service that helps you to manage and deploy applications in AWS.
+
+#####################
+
+
+Module 4: Monitoring and Alerting on AWS Resources
+
+AWS offers a wide range of services that can be used to monitor and alert on AWS resources. These services include:
+
+    AWS CloudWatch
+
+AWS CloudWatch is a monitoring service that provides you with data and insights about your AWS resources.
+
+    AWS CloudTrail
+
+AWS CloudTrail is a service that provides you with a record of all API calls made to your AWS account.
+
+    AWS Config
+
+AWS Config is a service that provides you with a view of your AWS resources and their configuration.
+
+
+
