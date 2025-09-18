@@ -1,0 +1,37 @@
+Install Jenkins on a server.
+
+2 ways to install Jenkins on a server.
+
+1) Install Jenkins directly on OS:
+- download package and install on server
+- create separate Jenkins user on server
+
+2) Run Jenkins as a Docker Container.
+- similar to install like we did with Nexus.
+
+We are going to use option 2).
+Choose your server.
+sudo apt update
+
+(-d - run detached in the background)
+
+sudo apt install docker.io
+sudo docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+- once Jenkins is installed, check it is showing
+docker ps
+
+- enter the docker container to run commands in the container
+docker exec -it 086615b8ab60 bash
+cat /var/jenkins_home/secrets/initialAdminPassword
+(all the default plugins)
+
+- check the volume
+sudo docker volume inspect jenkins_home
+
+- Finish creating a new Jenkins user/password/name and email.
+
+#############
+
+
+

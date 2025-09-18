@@ -1,0 +1,96 @@
+Jenkins UI TOUR:
+
+- 2 roles for Jenkins app: 
+--administrator: operations or devops teams that administer and manages Jenkins, sets up Jenkins cluster, installs plugins, and backup Jenkins data.
+--user: developer or devops teams, creating the actual jobs to run workflows.
+
+Browse to Manage Jenkins for additional options.
+
+######################
+
+Install build tools in Jenkins <-----
+
+Create a job to automate your app workflow.
+
+ex_1:
+Java App
+Java app with Maven Build Tools
+Run Tests
+Build Jar File
+(Maven needs to be available on Jenkins)
+
+ex_2:
+Javascript app
+Node app
+Run Tests
+Package and push to repo
+(npm needs to be available on Jenkins).
+
+Depending on your app (programming language) you need to have different tools installed and configured on Jenkins. 
+
+2 ways to install and configure those tools:
+Jenkins plugins: just install plugin (via UI) for your tool.
+Install tools directly onto the server: enter in remote server and install, inside the Docker container when Jenkins runs as a container.
+
+
+#############
+Configure plugin for Maven <------------
+
+Browse to Configure Tools and choose Add Maven (at the bottom), Type something like the version we're using and click Apply+Save. Now we will have Maven commands available.
+
+Now we need to have npm installed and for that we go to plugins, but we will choose to install directly on the server.
+
+############
+Install npm and Node in Jenkins container <-------------
+
+docker ps
+docker exec -it 086615b8ab60 bash
+(this does not give us root permissions to install the tools)
+
+- login as root to the container
+docker exec -u 0 -it 086615b8ab60 bash
+
+root@086615b8ab60:/# curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+root@086615b8ab60:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  nodesource_setup.sh  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@086615b8ab60:/# bash nodesource_setup.sh
+
+apt install nodejs
+root@086615b8ab60:/# nodejs -v
+v22.19.0
+root@086615b8ab60:/# npm -v
+10.9.3
+root@086615b8ab60:/#
+
+###############################
+
+Jenkins Basics Demo <----------------
+
+Create simple freestyle job and plugin configuration.
+- browsed Jenkins to create my-first-job, ran the task and observed the console output under the task that ran.
+
+Remember: Installing directly on the server gives you more flexibility. While a plugin is limited to provided input fields from the Jenkins platform, which can be limiting depending on the platform. 
+In Jenkins UI you are also limited to the tools that you can run.
+
+Go under tools and Plugins - Available - look for nodejs and install. Now it shows in your project under Configure at the bottom and you can configure the plugins. 
+
+Github - configured github and authentication, run the job and see output results.
+
+##########
+Do something from Git Repo in Jenkins Job <------------
+
+Modify the task to run from a Github branch that you've created.
+In the Execute shell, you're 
+
+
+############
+Run tests and build a Java Application.
+
+- we enabled Maven, invoked it twice, under the first goal we have 'test' as a command to run, and under the second we have 'package' as a command to run.
+- run the project
+- check console output to observe the workflow for successes and failures.
+- if you logged on to the docker container, under /var/jenkins_home/workspace/java-maven-build you would see the scripts that ran.
+In the target folder you would see the Java .jar file where the application was packaged.
+
+#######################
+

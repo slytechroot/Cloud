@@ -1,0 +1,59 @@
+- Introduction to Build Automation.
+- Deploy Jenkins on DigitalOcean Server
+- Install and use Build Tools in Jenkins: Maven, Gradle, npm.
+- Create Freestyle Job: credentials, plugins, git.
+- Docker in Jenkins: build image, push to private repo.
+- Build a scripted Pipeline
+- Jenkins in details
+- Build Multibranch pipeline
+- Configure automated versioning: increment version, build app, build image and push to docker repo.
+- Jenkins Shared Library
+
+########
+What is build automation?
+Build application locall - JAR.
+Build docker images - Docker Images.
+Pushed to Nexus repository - NEXUS.
+
+, but you DON'T do the above on your machine.
+
+As a developer to build the application, your push it to the Git Repo to be tested and built.
+Stash working changes and move to the Master branch and update the local state. Login to correct Docker Repository, setup the test environments to run tests, execute tests (meanwhile you CAN"T code), build Docker image and push to repo.
+
+You'd want a dedicated server to execute all of this!!!!
+So then, a developer pushed the changes to a Git repo, which gets picked up for testing and building (and this should be executed automatically). Test environment prepared, Docker credentials configured and all the necessary tools installed, triger the build automatically. THIS IS CALLED BUILD AUTOMATION!
+
+Enter - Jenkins:
+Build automation tool.
+Software that you install on a dedicated server. 
+Has UI for configuration.
+Installs all the tools you need (Docker, Gradle/Maven/NPM, etc).
+Configure the tasks (run tests, build app, deployment, etc).
+Configure the automatic trigger of the workflow for automation.
+
+What can you do with Jenkins?
+Run tests.
+Build artifacts.
+Publish artifacts.
+Deploy artifacts.
+Send notifications.
+and much more....
+
+Jenkins integrates with many other technologies.
+It needs to integrate with other tools, such as Docker, build tools, repositories, deployment servers.
+It has a lot of PLUGINS.
+You can configure plugins to help along the way with pulling the code from GitLab/Github, package the Java app with Gradle, build docker images, push to Nexus repo and deploy to AWS EC2.
+
+How does it work? What do you need to configure?
+When you run tests, you need to have Build Tools available to run the tests, with build tools you execute the test commands: npm test, gradlew test, mvn test, ..., configure test environments (test databases).
+Build application, build tools or docker available, with Docker you execute Docker commands: docker build. With build tools you execute build cmds: npm package, gradlew build, ....
+Publish Docker Images: store credentials in Jenkins, 
+Jenkins users must have access to the data, configuration and plugins to help with the automation.
+
+We need to install Jenkins and prepare everything.
+Setup needs to be done only once.
+Plugins, credentials, etc, can be used for different projects.
+
+#######################
+Next: Install Jenkins on a server.
+
