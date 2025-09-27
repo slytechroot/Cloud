@@ -1,0 +1,72 @@
+Let's create our first pipeline job. Call it anything you'd like.
+
+The first task is to connect it to the GitLab/GitHub repository. For this, we need enter the Configure and Pipeline.
+SCM - stands for Source Code Management.
+
+Pipelines are scripted!!!!
+No more manually selecting plugins and platform options.
+
+Scripts are written in Groovy.
+Programming language similar to the Java programming language, but much easier.
+
+We can choose samples from under 'try sample Pipelines'.
+
+You can execute a limited number of Groovy functions without needing approval from a Jenkins Admin.
+
+You can add an Inline Pipeline Script. 
+The Best practice to Infrastructure as Code: pipeline script in git repository!!!
+
+We will specify the GitLab/GitHub repo and branch, credentials. And we noticed under Script Path - Jenkinsfile. This means that Jenkins will look in the root folder for a file called 'Jenkinsfile'. 
+We can save and run the build, which will fail because we don't have the Jenkinsfile in the path.
+
+###
+Started by user Sly Tech Root
+ERROR: Unable to find Jenkinsfile from git https://gitlab.com/nanuchi/java-maven-app.git
+Finished: FAILURE
+###
+
+Under the repository path, and branch, we will Create a new File called Jenkinsfile-basic.
+
+########
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+            }
+        }
+    }
+}
+##########
+
+Run the task again and see it being successful. 
+
+Pipeline job <------------
+- want to execute 2 tasks in parallel
+- you need user input
+- conditional statement.
+- set variables
+- not limited!!!!
+
+Chained freestyle jobs:
+- replying on plugins
+- different plugins in multiple jobs
+- manage those plugins
+- very limiting!!!!
+
+##################################
+

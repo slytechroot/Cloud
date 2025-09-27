@@ -1,0 +1,30 @@
+Freestyle to Pipeline Job <-----------
+
+- with Freestyle we'd need multiple jobs for multiple steps, such as a Freestyle for:
+	- running integration tests for your application
+	- a second for building the application
+	- another one for deploying the application
+	- ... and so on ...
+
+Developers used to use Post-build Actions in Jenkins to chain projects together. 
+'Trigger only if build is stable'.
+This has limitations:
+- configuration via UI (not scripting)
+- very dependant on plugin input fields
+- not suitable for complex workflows
+- enter - CI/CD pipelines!!!!
+
+So this was before the pipelines came along. 
+
+Pipeline jobs:
+- suitable for CI/CD
+- scripting - pipeline as code!!!
+- using plugins
+- executing tools
+
+#############################
+
+
+
+
+

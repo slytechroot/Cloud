@@ -1,0 +1,6 @@
+https://gitlab.com/nanuchi/java-maven-app/-/blob/jenkins-jobs/Jenkinsfile-syntax/Jenkinsfile?ref_type=heads
+
+https://gitlab.com/nanuchi/java-maven-app/-/blob/master/Jenkinsfile?ref_type=heads
+
+Step by step development of the Gitlab repositories and pipeline run.
+

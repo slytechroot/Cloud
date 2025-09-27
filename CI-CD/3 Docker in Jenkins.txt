@@ -1,0 +1,165 @@
+Docker in Jenkins <-----------------
+
+If we are going to have Docker commands available in Jenkins then we also need to install Docker in Jenkins. The common way is to attach a docker volume to Jenkins from the host file. 
+
+Jenkins Containers.
+Docker runtime.
+For Jenkins to be able to run Docker commands, we need to make Docker commands available to Jenkins.
+We are going to stop our Docker container and we will start a new one with a new volume. Afterwards, we are going to start a new container. 
+
+docker ps
+docker stop sdasda4343asdas
+
+Jenkins data is saved on the host.
+Jenkins data will be available inside of the Docker container as well, but we need to mount the data to the new volume or container, so we move it to the new one. 
+
+docker volume ls
+
+#re-attach to new container with volume so that the old data is available to the new container. 
+/var/jenkins_home - data from the old container
+
+docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker jenkins/jenkins:lts
+
+docker ps
+All the data should still be there, including the user, jobs and more.
+
+Remember, we mounted the hosts volume to the Docker container and if we tried to do a 'docker pull redis' we'd get a permissions issue on the Docker socket, because Jenkins user inside of this container doesn't have the permissions on the file in the Docker container. So, we need to fix this permission issue, so we can run Docker commands from the Docker Jenkins container.
+
+ls -l /var/run/docker.sock
+(we need to add permissions to the jenkins user on this file)
+
+- we need to login as root user in the Jenkins container.
+(666 - is read/write permissions for all parties)
+
+docker exec -u 0 -it af9d54b0894b bash
+chmod 666 /var/run/docker.sock
+
+
+
+root@af9d54b0894b:/# ls -al /var/run/docker.sock
+srw-rw-rw- 1 root 999 0 Sep  8 02:42 /var/run/docker.sock
+root@af9d54b0894b:/# exit
+exit
+ubuntu@SEC699-C2:~$ sudo docker exec -it af9d54b0894b bash
+jenkins@af9d54b0894b:/$ docker pull redis
+Using default tag: latest
+latest: Pulling from library/redis
+d107e437f729: Pull complete
+
+This means we can execute Docker commands in any of our builds from the Execute shell section in Jenkins. Next, we're going to build a Docker image from our Java Maven application .jar file. 
+
+################
+Build Docker Image <--------------
+
+https://gitlab.com/nanuchi/java-maven-app/
+
+Checkout Git repo -> Run Tests -> Build Jar File -> Build Image.
+
+We can now go to the Jenkins platform into the java-maven-build and add an execute shell after 'maven-3.6 package':
+docker build -t java-maven-app:1.0 .
+
+
+Commands for Execute Shell:
+docker build -t java-maven-app:1.0 . 
+(Run the job again)
+- if we go inside the docker image, and issue
+
+docker images
+
+command, we should see our java-maven-app with the 1.0 tag. 
+
+Next we will configure the Jenkins build to push that image into a docker repository. 
+
+#############
+
+Push Images to DockerHub <----------------
+
+Checkout Git repo -> Run Tests -> Build Jar File -> Build Image -> Push to private repo (Docker Hub).
+
+Create DockerHub account. 
+Configure the credentials in Jenkins.
+
+<-------------
+Create an account in DockerHub and create a repository.
+
+
+<---------
+Configure the credentials in Jenkins.
+
+Then, we go back to the java-maven-build to reconfigure the Execute Shell with the following commands below. We need to configure this for authentication to DockerHub and for this we will use a plugin in Jenkins. So under Build Environment select 'Use secret text(s) or file(s)' to select the Bindings and choose 'Username and password (separated)'. Literrayly type USERNAME and PASSWORD in the related fields and choose under Specific Credentials the credentials you already added in Jenkins. 
+
+Use USERNAME and PASSWORD and choose the credentials you stored in Jenkins for DockerHub. And this will log us into the DockerHub. Dockerhub is the default repository for Docker client. 
+
+docker build -t sly/demo-app:sly-1.0 .
+docker login -u $USERNAME -p $PASSWORD
+docker push sly/demo-app:sly-1.0
+
+or with standard input for password:
+
+docker build -t sly/demo-app:sly-1.1 .
+echo $PASSWORD | docker login -u $USERNAME --password-stdin
+docker push sly/demo-app:sly-1.1
+
+So this how we build and push in Jenkins to a docker hub style repository. So if we go to DockerHub repository, we should see our image there, as we have just written the image to it. 
+
+###############
+
+Push Docker Image to Nexus Repository <------------------
+- essentialy we're reconfiguring our docker container to be able to access the Nexus repo. 
+
+Browse in Nexus to Browser and choose 'docker-hosted'.
+
+In the SSH terminal to the vm, edit the file below:
+vim /etc/docker/daemon.json
+
+- we are creating insecure registries:
+- port 8083 opened for Docker repositories.
+
+{
+	"insecure-registries": ["192.168.1.113:8083"]
+}
+
+- restart Docker for the change to apply.
+systemctl restart docker
+
+- however restarting the Docker service, kills all the running docker containers. 
+docker ps
+docker ps -a
+
+docker start asdasadaas343
+
+- rconfigure the permissions to the docker.sock file
+ls -l /var/run/docker.sock
+
+docker exec -u 0 -it asdasadaas343 bash
+chmod 666 /var/run/docker.sock
+
+- check permissions
+ls -l /var/run/docker.sock
+
+- let's reconfigure our Jenkins build, to push to Nexus, instead of Docker. 
+- we need Nexus permissions added into Jenkins!!!
+- same as above, under Credentials and Specific Credentials, modify the build to use the new credentials.
+- do some changes in the Execute Shell. Repository name: demo-app-2.
+- 
+
+docker build -t 192.168.1.113/demo-app-2:sly-1.1 .
+echo $PASSWORD | docker login -u $USERNAME --password-stdin 192.168.1.113:8083
+docker push sly/demo-app-2:sly-1.1
+
+Go to the Nexus console, find 'docker-hosted' under Repositories, and if the build was successful you should see your image.
+
+- see all your docker images as well.
+docker images
+
+########## The end #########
+
+
+
+
+
+
+
+
+
+
