@@ -1,0 +1,45 @@
+Webhooks-trigger-pipeline-jobs-automatically <---------------
+
+- We want to trigger automatically when changes happen in the git repository
+
+- Configure Jenkins and Gitlab (your git repo) needs to be configured for that.
+- Notify Jenkins to start a job
+
+In the case of a pipeline that deploys to production, you'd want the Jenkins job to run Manually by someone.
+
+You can also schedule builds in Jenkins. Trigger job on scheduled times. 
+Used for Long running tests.
+Or for tasks that need to run only weekly/monthly.
+Other long running tasks!
+
+We will configure the automatic triggering for MultiBranch Job!!!!
+- trigger automatically when changes happen in the git repo.
+- trigger build, whenever we push a commit to git repo.
+- we need configuration for Jenkins (plugin) and the GitLab side.
+
+The plugin in Jenkins is called GitLab.
+Under Configure System, we can validate the indeed the plugin has been added or made available.
+This will give GitLab access to trigger a specific project.
+
+On the Gitlab side, look in the Settings for Integrations and/or Webhooks. We will choose Integrations though!
+
+Webhooks enable you to send notifications to web applications in response to events in a group or project. We recommend using an integration in preference to a webhook.
+Make sure 'Push events' is enabled!
+
+In GitLab:
+Under Integrations, we are looking for Jenkins CI.
+Trigger on Push, must be selected!!!
+Fill out the Jenkins URL, a project name, Jenkins username/password. Save the changes.
+
+In Jenkins, under Settings, Plugins, Installed plugins, look for GitLab and install.
+
+###################
+
+Configure automatic triggering of Jenkins job (for Pipeline job) <------------
+
+Under any job, even the regular pipeline job, under Build Triggers, we can select 'Build when a change is pushed to GitLab.'
+
+############
+
+Once we perform a change in GitLab Jenkinsfile, the build will trigger on the Jenkins side!!!
+

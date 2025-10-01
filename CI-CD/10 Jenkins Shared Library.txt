@@ -1,0 +1,81 @@
+Jenkins Shared Library <--------------
+
+What is a shared library?
+Why do we need it?
+
+Maven for Java applications.
+
+We would build a pipeline for each Microservice App.
+
+Each Pipeline has its own Jenkinsfile, but this complicates the pipeline because each is using the same logic.
+Enter Jenkins Shared Library!!!!
+
+
+This is an extension to the Pipeline.
+Has own repository.
+Written in Groovy.
+References shared login in Jenkinsfile.
+This can be used in the company's pipeline.
+
+Create the Shared Library (SL) 
+Make SL available in Jenkins.
+Use the SL in Jenkinsfile.
+
+Create Shared Library Project/Repository? <------------------
+
+- Create repository
+- write the Groovy Code
+- make the shared library available globally or for project
+- use the shared library in Jenkinsfile to extend the Pipeline
+
+Let's use IntelliJ for our Code writing.
+
+Structure of Shared library:
+Vars folder:
+- functions that we call from JenkinsFile
+- each function/execution step is its own Groovy file.
+
+- build Jar file
+- build Docker image
+- push Docker Image.
+
+src folder:
+- helper code
+
+resources folder:
+- use external libraries
+- non groovy files
+
+THIS VIDEOS IS CODING BASED AND NEEDS TO BE REVISITED!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

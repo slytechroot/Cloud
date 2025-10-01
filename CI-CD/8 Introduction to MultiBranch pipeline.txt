@@ -1,0 +1,54 @@
+Introduction to multibranch pipeline
+
+- this is about using additional Github branches in your pipeline
+- this is useful in real life, as each branch hosts code for bug fixes, features, etc.
+- additional you can run tests on every and any branch
+- execute deployment only on Master Branch
+- when merged into master: test, build and deploy App.
+
+Pipelines for ALL the branches!!!!
+
+Multibranch pipeline!
+
+
+Create a multibranch pipeline.
+
+Use this for repo pull:
+https://github.com/Joeri-Abbo/techworld-with-nana-java-maven-app.git
+
+Under Discover Branches, choose 'Filter by name (with regular expression)' and leave the default: 
+.*
+
+Property Strategy:
+All branches get the same properties.
+
+Once Save, the pipeline will trigger and create in Jenkins a pipeline for each Branch.
+
+###################
+
+Branch-based logic for Multibranch Pipeline <---------------------
+
+https://github.com/Joeri-Abbo/techworld-with-nana-java-maven-app.git
+
+https://github.com/Joeri-Abbo/techworld-with-nana-java-maven-app/blob/a244b989984155e0bb402cbb1b3fa3988c2cca72/Jenkinsfile
+
+When you're ready modifying the Jenkinsfile, click 'Scan Multibranch Pipeline Now'.
+
+We can then look at 'Scan Multibranch Pipeline Logs' to see build results.
+
+###########
+
+Wrap Up <---------------
+
+Freestyle:
+Executing a single task
+
+Pipeline:
+Better solution for CI/CD.
+
+Multi-branch Pipeline:
+Parent of pipeline jobs for each branch. 
+
+
+
+#############################
