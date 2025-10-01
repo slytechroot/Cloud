@@ -1,0 +1,14 @@
+Video is code building.
+
+Git commit commands.
+
+1) Detect that commit was made from Jenkins.
+2) Ignore trigger when commit is from Jenkins.
+
+Install a Jenkins plugin called 'Ignore Committer Strategy'.
+
+Browse to the pipeline and Configure, under Branch Sources, find Build Strategies, select 'Ignore Committer Strategy'.
+
+
+
+

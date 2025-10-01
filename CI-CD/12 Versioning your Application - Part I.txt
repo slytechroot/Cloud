@@ -1,0 +1,40 @@
+Versioning your application - explained
+
+- increment app version
+- each build tool or package manager tool keeps a version
+
+Software versioning:
+- YOU decide how you version your application
+- versioning becomes really useful when we fix a bug, release a new feature, etc.
+
+3 parts of a version:
+
+e.g.:
+version 3.2.1
+3 - major - contains a big change, breaking changes, not backward-compatible.
+2 - minor - new, but backward compatible changes, API features.
+1 - patch - minor changes and bug fixes, doesn't change API.
+
+- you need to increment the version in e.g. pom.xml file.
+- automatically increase version inside the build automation.
+- build tools have commands to increment the version.
+
+Sometimes you will need to use the Application version for the Docker Image version.
+
+Always:
+- review your changes
+- commit
+- run Jenkins pipeline
+
+Stage:
+Increment version.
+Build app.
+Build docker image.
+Build docker image from DockerFile.
+Tag Image with Repo-url and name.
+Login to Private Docker Repository.
+Push to Private Docker Repository.
+
+########## Let's go to Part II ##############
+
+
