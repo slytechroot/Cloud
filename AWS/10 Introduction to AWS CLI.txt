@@ -1,0 +1,309 @@
+We've used the UI to create a user and setup a vm. 
+
+What if we only have programmatic access to setup things?
+
+Commands for every AWS service and resources. Powerful command line tool.
+
+How to install the AWS cli?
+How to use AWS Cli?
+ex:
+Create a AWS EC2 instance.
+
+Components we will create with AWS CLI:
+- EC2 instance
+- 1 security group
+- SSH key pair.
+
+
+Install and Configure the Command Line Tool <----------------
+
+brew install awscli
+
+#check the install guide in the AWS official guide online.
+#install AWS CLI version 2.
+
+Configure AWS CLI to connect to AWS account <----------------
+- connect with an AWS user.
+- UI access through Password
+- CLI access through Access key ID and Secret access key.
+
+aws configure
+(add the access key id):
+(add secret access key):
+(default region):
+default output format:json
+
+Configuration is stored in your home directory under /.aws.
+
+ls -l ~/.aws
+
+cat ~/.aws/config 
+
+cat ~/.aws/credentials
+
+How does the AWS CLI works? <----------------
+aws - the base call to the aws program.
+command - the AWS service
+subcommand - specified which operation to perform.
+
+
+Create EC2 instances <----------
+
+aws ec2 run-instances
+	--image-id ami-xxxxxx
+	--count 1
+	--instance-type t2.micro
+	--key-name MyKeyPair
+	--security-group-ids sg-9055343g1
+	--subnet-id subnet-4r5t6y7u
+	
+- we create a new key-name and new security-group-ids.
+
+aws ec2 describe-security-groups
+
+- we need the ID of the VPC.
+
+aws ec2 describe-vpcs
+
+aws ec2 create-security-group --group-name my-sg --description "My SG" --vpc-id vpc-123456h
+
+aws ec2 describe-security-groups --group-ids sg-9055343g1ghgjk
+
+aws ec2 authorize-security-group-ingress --group-id sg-9055343g1ghgjk --protocol tcp --port 22 --cidr <check-your-own-ip>/32
+
+
+### or on new lines
+
+aws ec2 authorize-security-group-ingress \
+	--group-id sg-9055343g1ghgjk \
+	--protocol tcp \
+	--port 22 \
+	--cidr <check-your-own-ip>/32
+	
+
+aws ec2 describe-security-groups --group-ids sg-9055343g1ghgjk
+
+You can check in the AWS console all the settings you did!!!!
+
+
+
+Create key-pair <----------------
+#obtain the unencrypted contents of the MyKeyPairCli!!!!!!
+aws ec2 create-key-pair \
+	--key-name MyKeyPairCli \
+	--query 'KeyMaterial' \
+	--output text > MyKeyPairCli.pem
+	
+	
+	
+Create EC2 instances <--------------
+
+- get the subnet ID
+aws ec2 describe-subnets
+
+Now we can execute/create the EC2.
+
+
+### Code #########
+aws ec2 run-instances
+	--image-id ami-0ctrgssfs78s7f8sd7fs
+	--count 1
+	--instance-type t2.micro
+	--key-name MyKeyPairCli
+	--security-group-ids sg-9055343g1
+	--subnet-id subnet-4r5t6y7u
+
+	
+#find public IP address
+aws ec2 describe-instances
+
+Note: the EC2 has to be fully created and started!!!
+
+ssh -i MyKeyPairCli.pem ec2-user@<public-ip>
+
+#If you get an error message about Permission denied, is because the .pem file permissions are not restrictive enough. 
+chmod 400 MyKeyPairCli.pem
+
+(only the user that created it should have read r permissions)
+
+FILTER and QUERY!!!! <-----------
+(describe command option)
+
+aws <command> describe
+(list certain components)
+
+add filters:
+aws ec2 describe-instances --filters
+(filter your components/resources)
+
+aws <command> describe-
+
+-filter the output with --query option.
+-what information/attributes do you want?
+
+Filter = picks components.
+Query = picks specific attributes of components.
+
+#show all EC2 that are of t2.micro. and show the InstanceIds.
+aws ec2 describe-instances --filters "Name=instance-type, Values=t2.micro" --query "Reservations[].Instances[].InstanceId"
+
+
+- the 'instance-type' can be anything, or any data.
+- for instance, tags.
+
+aws ec2 describe-instances --filters "Name=tag:Name, Values=MyInstanceNo1"
+
+aws ec2 describe-instances --filters "Name=image-id, Values=ami-x43242342, ami-r4242332424, ami-e45435353"
+
+######################
+
+Using IAM command - create user, group and assign permissions!!!!! <-----------------
+
+IAM - CLI commands.
+Create AWS user.
+Create User group.
+Assign Policy (Permission) to that user group.
+
+aws iam create-group --group-name MyCrazygroupCLI
+
+#Groups can be for System admins, K8s admin group, Jenkins group.
+
+ARN - amazon resource name.
+
+
+aws iam create-user --user-name MyCrazyUserCLI
+
+aws iam add-user-to-group --user-name MyCrazyUserCLI --group-name MyCrazygroupCLI
+
+aws iam get-group --group-name MyCrazygroupCLI
+
+#assign permissions
+#we need a policy identifier - ARN - that we can retrieve from under Access management - and Policies, select/click needed policy and observe the Policy ARN.
+#Policy = group of permissions.
+aws iam list-policies --query 'Policies[?PolicyName==`AmazonEC2FullAccess`].{ARN:arn}' --output text
+(arn:aws:iam::aws:policy/AmazonEC2FullAccess)
+
+aws iam attach-group-policy --group-name MyCrazygroupCLI --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess
+
+aws iam list-attach-group-policies --group-name MyCrazygroupCLI
+
+
+
+#Create Credential for new user!!!! <----------
+aws iam create-login-profile --user-name MyCrazyUserCLI --password Mypwd123! --password-reset-required
+
+#get account ID
+aws iam get-user --user-name MyCrazyUserCLI
+(56456455465465464)
+
+Go to the browser and try to logon with the information above, such as the account ID, password and username.
+
+Permission missing to change the password!!!!!
+We will create our own policy and then assign to the user. Template available online with proper syntax and save to changePwdPolicy.json.
+
+aws iam create-policy --policy-name changePwd --policy-document file://changePwdPolicy.json
+
+aws iam attach-group-policy --group-name MyCrazygroupCLI --policy-arn arn:aws:iam::345678:policy/changePWD
+
+
+#Create access keys for the new user!!!!! <-----------
+
+aws iam create-access-key --user-name MyCrazyUserCLI
+(in the output we get the AccesskeyID and Secret Key)
+
+
+Switch AS users for AWS CLI commands!!! <----------------
+Change AWS user for executing commands!!!
+Use 'aws configure' to change default user.
+
+
+aws configure set aws_access_key_id ASDSADSA898AS9SDA 3qadashr39adajr8ja8adjj8h83hada
+
+- we can use use environmental variables.
+EXPORT AWS_ACCESS_KEY_ID=
+EXPORT AWS_SECRET_ACCESS_KEY=
+
+EXPORT AWS_DEFAULT_REGION=
+
+- WE CAN now query for information with this new user!!!
+
+aws ec2 describe-instances
+
+aws ec2 create-user --user-name test
+
+
+
+DELETE AWS RESOURCES!!!!! <-------------------
+
+aws ec2 ss [tab]
+
+########### THE END 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
