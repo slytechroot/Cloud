@@ -1,0 +1,18 @@
+Regions Availability Zones:
+
+Cloud providers have physical data centers all over the world.
+
+Regions - physical locations, where data centers are clustered.
+
+AWS has 24 regions.
+
+When you build a server, you need to select a region you want to build it in.
+
+Availability Zones - 1 or more discrete data centers.
+AWS has 77 availability zones!!!!
+
+Important for users when they access your applications:
+Where are your customers located?
+
+
+

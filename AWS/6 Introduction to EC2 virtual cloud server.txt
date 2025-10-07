@@ -1,0 +1,76 @@
+Amazon Elastic Computer Cloud (EC2) <-----------
+
+Virtual server in AWS cloud
+Provide computer capacity
+
+DEMO
+Deploy Web Application on EC2 instance:
+- Create an EC2 instance on AWS
+- Connect to EC2 instance with SSH
+- Install Docker on remote EC2 instance
+- Run Docker Container (docker login, pull, run) from Private Repo.
+
+Tags are Metadata that can help us differentiante between images, their purpose, etc.
+
+Configure Security Groups - or firewall rules on Subnet or Instance level.
+
+Create the EC2 instance!!!!
+
+Login over SSH, but before.
+Save the private.pem file to local machine.
+Give it only read permissions:
+chmod 400 .ssh/private.pem
+
+ssh -i ~/.ssh/docker-server.pem ec2-user@<public.ip>
+
+Update your package manager tool!
+For up-to-date repositories!
+
+sudo yum update
+
+#install Docker
+sudo yum install docker
+
+Start the Docker daemon:
+sudo service docker start
+
+sudo docker run
+
+, but we want to add the ec2-user to the Docker group
+sudo usermod -aG docker $USER
+
+groups
+
+##################
+Run Web application on EC2 <---------
+- pull Docker image
+- run Docker Container
+
+You could also:
+Build the Docker Image yourself.
+Push to YOUR private DockerHub repository.
+
+
+Docker login
+User:
+pass:
+
+Docker pull sly/demo-appL1.0
+
+Docker images
+
+docker run -d -p 3000:3080 sly/demo-app:1.0
+
+docker ps
+
+ 
+Make app accessible from Browser <----------------
+- open firewall ports!!!!
+
+
+
+
+
+
+
+

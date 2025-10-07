@@ -1,0 +1,62 @@
+Identity and Access Management (IAM)
+
+Manage access to AWS services and resources
+
+WHO is allowed to access services and resource?
+Create and manage AWS users and groups.
+Assign policies (set of permissions).
+
+Root user is created by default.
+ROOT user has unlimited privileges.
+
+Create an admin user with less privileges.
+
+Jenkins deploys Docker containers on AWS.
+
+Jenkins pushed Docker images to AWS Docker repo.
+
+Users - used to grant people access to applications in your AWS account.
+Groups - for granting access to multiple IAM users.
+Roles - to grant AWS services and external identities access to your AWS account. Granting AWS services access to other AWS services.
+
+IAM role vs IAM User <-------------------
+
+IAM users - human or system users to create EC2 users, access AWS services.
+Policies cannot be assigned to AWS Services directly.
+We assign a service role and then assign the policy to that role.
+
+ex for EC2:
+Create IAM user
+Assign Policy to IAM user.
+
+ex for EKS:
+Create IAM role
+Assign policy to IAM role
+
+We have roles for each service.
+We have policy specific permissions to the Service.
+
+2 Steps:
+1. Assign Role to AWS service.
+2. Attach policies to that Role.
+
+#################
+DEMO
+Create an IAM user - admin user <-------------
+
+Select - 'Programmatic Access' and 'AWS management console access'.
+
+Remember during user creation to select the below option:
+Attach existing policies directly.
+
+For the admin account the roles you can choose - Administrator Access and IAMUserChangePassword.
+
+Save the information such as the:
+Access key ID
+Secret access key
+Password
+
+You can also choose to save everything to a .csv file.
+
+################
+

@@ -1,0 +1,57 @@
+Virtual private cloud <-------------------
+
+VPC for each REGION.
+
+VPC is your own isolated network in the CLOUD.
+
+VPC spans ALL THE AZ (subnet) in that region!
+
+Private network isolated from others!!!!!
+
+Multiple VPC's in different Regions.
+
+What do VPCs include?
+Virtual representation of network infrastructure.
+Setup of servers, network configuration moved to the cloud.
+
+Your components have to run in your VPC.
+
+Subnets:
+Subnet for each availability zone.
+Private network inside the network.
+Private vs Public Subnet.
+Firewall rule configuration make it either a private and/or public subnet.
+
+In a private subnet, traffic some the outside won't be able to route inside, but, other services inside the VPC will have access inside the private subnet.
+
+Internal IP range on VPC level, is not meant for outside web traffic or internet access, but for VPC internal traffic.
+
+Route tables, internet gateways, DHCP options, elastic IPs, NAT gateways, etc.
+
+Internet Gateway:
+Connects the VPC to the outside Internet.
+
+###############
+
+Controlling Access <--------------------
+
+Secure your components.
+Control access to your VPC.
+Control access to your individual server instances.
+
+Security - secure your components
+NACL - network access control list
+
+Network ACLs!!!!
+
+Configure access on subnet level with NACL!!!!
+
+Configure access on instance level with Security Groups!!!!
+Security groups get assigned to EC2 instances, RDS instances, and more.
+Create a VPC level and assign to subnet and instances.
+
+
+
+
+
+

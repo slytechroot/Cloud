@@ -1,0 +1,14 @@
+Classless Inter-Domain Routing - CIDR
+
+Range of IP addresses.
+
+https://mxtoolbox.com/subnetcalculator.aspx
+
+https://jodies.de/ipcalc
+
+Calculate Sub CIDR block for Subnet <---------------
+
+https://www.davidc.net/sites/default/subnets/subnets.html
+
+
+

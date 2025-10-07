@@ -1,0 +1,41 @@
+Complete Pipeline
+
+Set Image name dynamically <---------------
+
+Increment version (in pom.xml) -> Build app with Maven (with new version) -> Build and Push image (build and store new Docker Image version) -> Deploy to EC2 (deploy new version with docker-compose) -> Commit version bump.
+
+https://github.com/Joeri-Abbo/techworld-with-nana-java-maven-app/blob/master/Jenkinsfile
+
+
+Update the change in the Git repository code.
+
+Next Pipeline must start with the new version.
+
+Keep in mind the stage order!
+
+When a stage fails, the next stage gets skipped!
+
+Extract into groovy scripts.
+Extract with Shared Library.
+
+#####################
+
+Container orchestration!!!!! <-------------------
+
+Deployment looks different for more advanced use cases.
+
+Container orchestration instead of Docker Compose.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

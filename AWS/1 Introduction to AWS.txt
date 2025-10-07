@@ -1,0 +1,12 @@
+Introduction to AWS <--------------
+
+Introduction to AWS services
+Manage users and permissions with IAM
+Regions and Availability Zones
+Configure own private network with VPC
+Create virtual servers with EC2
+
+Continuous Deployment with Jenkins:
+Build Pipeline to deploy to EC2 instances
+Introduction to AWS CLI.
+

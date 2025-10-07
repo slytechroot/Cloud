@@ -1,0 +1,229 @@
+Using Docker Compose for Deployment<--------------
+
+Just started 1 Docker Container - docker run
+
+Small application with multiple services would start with Docker Compose.
+
+Docker-compose command
+Such as:
+docker run 
+docker run ..
+docker run ...
+
+Docker-compose.yaml
+
+docker-compose -f docker-compose.yaml up
+
+Overview:
+Install docker-compose on EC2 instance
+Create docker-compose.yaml file
+Adjust Jenkinsfile to execute docker-compose command on EC2 instance.
+
+Install Docker Compose <--------------------------
+- on the EC2 instance
+- install Docker Compose with instructions from the documentation
+sudo curl -SL https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+docker-compose --version
+
+docker ps
+(none found)
+
+Create Docker Compose File <------------------
+docker-compose.yaml
+
+###########
+#1)Our Java Maven Docker image
+#2)Third-party postgres docker image
+
+version: '3.8'
+services:
+	java-maven-app:
+		image: nanajanashia/demo-app:java-maven-1.0
+		ports:
+			- 8080:8080
+	postgres:
+		image: postgres:13
+		port:
+			- 5432:5432
+		environment:
+			- POSTGRES_PASSWORD = my-pwd
+		
+#hub.docker.com/_/postgres		
+#############
+
+Make Jenkinsfile adjustments <------------------
+
+Code......
+
+################
+
+We need the docker-compose.yaml file on the EC2 instance.
+
+#########
+stage ('deploy') {
+	steps {
+		script {
+			echo 'deploying docker image to EC2...'
+			def dockerComposeCmd = "docker-compose -f docker-compose.yaml up --detach" #runs in detached mode
+			sshagent(['ec2-server-key']) { 			#reference to the ID name
+			sh "scp docker-compose.yaml ec2-user@35.254.21.21:/home/ec2-user"
+			sh "ssh -o StrictHostKeyChecking=no ec2-user@35.254.21.21 ${dockerCmd}"
+		}
+	}
+}
+##########
+Work out of the Jenkins-jobs branch.
+
+#commit that new code into Git Repository
+git add .
+git commit -m "add docker-compose config"
+git push
+
+- go back to the Jenkins-jobs pipeline and re-build the job with 'Build Now'.
+
+- go to the EC2 user and run:
+docker ps
+
+, to check on your running containers.
+- and check on the docker-compose.yaml file if it's located under /user/ec2-user
+
+####
+Improvement: Extract to Shell Script<----------
+
+- we can run multiple commands that be save under a bash shell script.
+
+### server-cmds.sh ####
+#!/usr/bin/env bash
+
+docker-compose -f docker-compose.yaml up --detach
+echo "success"
+export TEST=testvalue
+
+#######
+
+#########
+stage ('deploy') {
+	steps {
+		script {
+			echo 'deploying docker image to EC2...'
+			def shellCmd = "bash ./server-cmds.sh" #runs the shell script above. The file needs to be located on the EC2 as well. 
+			sshagent(['ec2-server-key']) { 			#reference to the ID name
+			sh "scp server-cmds.sh ec2-user@35.254.21.21:/home/ec2-user"
+			sh "scp docker-compose.yaml ec2-user@35.254.21.21:/home/ec2-user"
+			sh "ssh -o StrictHostKeyChecking=no ec2-user@35.254.21.21 ${shellCmd}"
+		}
+	}
+}
+##########
+Commit all the changes to the Git Repository.
+
+Stop all docker repositories:
+
+docker-compose -f docker-compose.yaml down
+docker ps
+
+Run the Jenkins-jobs job.
+
+EC2:
+docker ps
+(see new docker containers running)
+
+####################
+
+Improvement: Replace Docker Image with newly built version <--------------------
+
+https://github.com/Joeri-Abbo/techworld-with-nana-java-maven-app/blob/master/Jenkinsfile
+
+- We will set IMAGE_NAME as a variable.
+
+###########
+#1)Our Java Maven Docker image
+#2)Third-party postgres docker image
+
+version: '3.8'
+services:
+	java-maven-app:
+		image: ${IMAGE}
+		ports:
+			- 8080:8080
+	postgres:
+		image: postgres:13
+		port:
+			- 5432:5432
+		environment:
+			- POSTGRES_PASSWORD = my-pwd
+		
+#hub.docker.com/_/postgres		
+#############
+
+### server-cmds.sh ####
+#!/usr/bin/env bash
+
+export IMAGE=$1 #first parameter
+docker-compose -f docker-compose.yaml up --detach
+echo "success"
+
+
+#######
+From Jenkinsfile to Shell Script via Parameter.
+Access via $1 in Shell Script + export environment variable (on EC2).
+Access environment variable in docker-compose file.
+
+Commit to repo.
+
+Check the Ec2 for running containers.
+
+##################
+More minor optimizations <--------------------
+
+#########
+stage ('deploy') {
+	steps {
+		script {
+			echo 'deploying docker image to EC2...'
+			
+			def shellCmd = "bash ./server-cmds.sh" #runs the shell script above. The file needs to be located on the EC2 as well. 
+			def ec2Instance = "ec2-user@35.254.21.21"
+			
+			sshagent(['ec2-server-key']) { 			#reference to the ID name
+				sh "scp server-cmds.sh ${ec2Instance}:/home/ec2-user"
+				sh "scp docker-compose.yaml ${ec2Instance}:/home/ec2-user"
+				sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} ${shellCmd}"
+			}#end sshagent
+		}#end script
+	}#end steps
+}#end stage
+
+##########
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
