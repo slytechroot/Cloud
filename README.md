@@ -1,6 +1,6 @@
 🌟 Hey there, I’m sly!
 
-🌍 Always learning something new — currently diving into [insert tech/tool here]
+🌍 Always learning something new — currently diving into [Cloud DevOps and DevSecOps]. Learning Git (GitHub, GitLab), Jenkins, Docker and AWS).
 
 🎮 Fun fact: Notes from my journey from IT and Security Engineering and operations to Security DevOps and DevSecOps!!! 
 
