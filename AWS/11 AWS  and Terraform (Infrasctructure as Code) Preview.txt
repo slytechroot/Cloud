@@ -1,0 +1,12 @@
+11 AWS  and Terraform (Infrasctructure as Code) Preview
+
+- automation tools
+
+- Hashicorp - Terraform
+- to provision infrastructure
+- create and manage resources.
+
+
+
+
+
