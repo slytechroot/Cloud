@@ -126,6 +126,30 @@ kubectl delete deployment mongo-depl
 kubectl get pod
 kubectl get replicaset
 
+kubectl delete deployment nginx-depl
+
+When we configure the configuration file and then we want to apply everything we use:
+kubectl apply -f [file name]
+
+ex:
+kubectl apply -f config-file.yaml
+
+kubectl apply -f nginx-deployment.yaml
+(paste a basic config in the .yaml file)
+
+kubectl apply -f nginx-deployment.yaml
+
+kubectl get pod
+
+kubectl get deployment
+
+(we can change the replicas amount from 1 to 2)
+
+K8s knows when to create or update the deployment.
+
+###############
+
+
 
 
 
