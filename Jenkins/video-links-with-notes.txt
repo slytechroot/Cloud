@@ -2,13 +2,15 @@ Jenkins videos with notes <---------------------
 
 #####################
 https://www.youtube.com/watch?v=pMO26j2OUME
-
 docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins
 
 -p 8080 = by default runs on this port
 -p 50000 = master/slave communication
 -d = run container in the background
 -v = persistent data of Jenkins in a volume, with folder name and path.
+
+docker ps 
+(check running docker containers)
 
 docker logs <container_ID>
 (scroll until you find the text with 'the following password to proceed to installation' to retrieve the initialization password)
