@@ -1,0 +1,15 @@
+Jenkins
+https://www.youtube.com/watch?v=pMO26j2OUME
+https://www.youtube.com/watch?v=MY1w7sWW5ms
+https://www.youtube.com/watch?v=CmwTPxdx24Y
+https://www.youtube.com/watch?v=EzgCoOQvOf0
+https://github.com/kodekloudhub/jenkins-project
+https://github.com/kodekloudhub/course-jenkins-project
+https://learn.kodekloud.com/user/courses/jenkins
+https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS
+https://github.com/AdminTurnedDevOps?tab=repositories
+https://github.com/AdminTurnedDevOps/PearsonCourses
+https://github.com/AdminTurnedDevOps/kubernetes-real-world-course
+https://github.com/sidd-harth/jenkins-hello-world
+https://github.com/jenkins-kk-demo/parameterized-pipeline-job-init
+https://github.com/sidd-harth/solar-system-gitea
